@@ -32,10 +32,7 @@ public class Teleporter : MonoBehaviour
         {
             transform.position = new Vector3(limitX, transform.position.y);
         }
-        
-
-
-
+  
 
     }
 }
