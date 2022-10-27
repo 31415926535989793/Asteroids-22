@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Asteroid
   - Pj
+  - Nave
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Nave
   - Water
   - UI
   - 

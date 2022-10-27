@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
         points.text= GameManager.instance.points.ToString();
         lives.text= GameManager.instance.lives.ToString();
 
-        if(GameManager.instance.lives <= 0)
+        if(GameManager.instance.lives < 1)
         {
             gameover.SetActive(true);
         }

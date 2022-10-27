@@ -28,5 +28,10 @@ public class BulletControloer : MonoBehaviour
             collision.gameObject.GetComponent<AsteroidControl>().Dead();
             Destroy(gameObject);
         }
+        if (collision.tag == "Nave")
+        {
+            collision.gameObject.GetComponent<NaveController>().Dead();
+            Destroy(gameObject);
+        }
     }
 }

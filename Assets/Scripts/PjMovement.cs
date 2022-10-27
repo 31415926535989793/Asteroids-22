@@ -8,11 +8,13 @@ public class PjMovement : MonoBehaviour
     Animator anim;
     EdgeCollider2D colider;
     SpriteRenderer sprite;
+    Teleporter tele;
     public float speed = 10;
     public float rotationspeed = 10;
     public GameObject bala;
     public Transform firepoint;
     public GameObject particulasMuerte;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,7 @@ public class PjMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         colider = GetComponent<EdgeCollider2D>();    
         sprite = GetComponent<SpriteRenderer>();
+        tele = GetComponent<Teleporter>();  
     }
 
     // Update is called once per frame
@@ -45,7 +48,15 @@ public class PjMovement : MonoBehaviour
             GameObject temp = Instantiate(bala, firepoint.position, transform.rotation);
             Destroy(temp, 1f);
         }
-        
+
+        //Hiperespacio(Teleport a una posicion aleatoria en la pantalla; Hiper = "c")
+        if (Input.GetButtonDown("Hiper"))
+        {
+            Vector3 position = new Vector3(Random.Range(-tele.limitX, tele.limitX), Random.Range(-tele.limitY, tele.limitY));
+            transform.position = position;  
+
+        }
+
     }
 
     public void Dead()
@@ -53,27 +64,24 @@ public class PjMovement : MonoBehaviour
         GameObject temp = Instantiate(particulasMuerte, transform.position, transform.rotation);
         Destroy(temp, 1.5f);
 
-        if (GameManager.instance.lives <= 0)
+        StartCoroutine(respawn_coroutine());
+        if (GameManager.instance.lives < 1)
         {
             Destroy(gameObject);
             Time.timeScale = 0;
         }
-        else
-        {
-            StartCoroutine(respawn_coroutine());
-        }
-
     }
 
     IEnumerator respawn_coroutine()
     {
+        GameManager.instance.lives -= 1;
+
         colider.enabled = false;
         sprite.enabled = false;
         yield return new WaitForSeconds(1);
         colider.enabled = true;
         sprite.enabled = true;
 
-        GameManager.instance.lives -= 1;
         transform.position = new Vector3(0, 0, 0);
         rb.velocity = new Vector2(0, 0);
 
