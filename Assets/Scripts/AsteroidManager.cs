@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Script que controla la creacion de asteroides
 public class AsteroidManager : MonoBehaviour
 {
+    //Declaracion de variables.
     public int asteroids_min = 2;
     public int asteroids_max = 5;
     public int asteroids;
@@ -21,6 +23,7 @@ public class AsteroidManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Aumenta en 2 el min i max de asteroides que pueden spawnear en el siguiente nivel y los crea.
         if(asteroids <= 0)
         {
             asteroids_min += 2;
@@ -29,6 +32,7 @@ public class AsteroidManager : MonoBehaviour
         }
     }
 
+    //Funcion para crear los asteroides y que parezcan en una posicion aleatoria en el mapa excepto en el medio(donde spawnea el personaje).
     void CreateAsteroids()
     {
         int asteroids = Random.Range(asteroids_min, asteroids_max);
