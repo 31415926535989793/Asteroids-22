@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEditor;
 
 //Script para los textos en pantalla y las imagenes de las vidas.
 public class UIManager : MonoBehaviour
@@ -11,6 +13,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI time;
     public TextMeshProUGUI points;
     public TextMeshProUGUI lives;
+    public GameObject pause;
     public GameObject gameover;
     public Image Vida1;
     public Image Vida2;
@@ -18,7 +21,7 @@ public class UIManager : MonoBehaviour
     public Image Escudo1;
     public Image Escudo2;
     public Image Escudo3;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,7 @@ public class UIManager : MonoBehaviour
         Escudo1.enabled = false;
         Escudo2.enabled = false;
         Escudo3.enabled = false;
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -59,8 +63,8 @@ public class UIManager : MonoBehaviour
             Vida2.enabled = false;
         }
 
-
-        if (GameManager.instance.points >= 100 && GameManager.instance.escudos == 3)
+        //Aparecen tres simbolos del escudo debajo de las vidas para indicar cuantos usos te quedan disponibles.
+        if (GameManager.instance.points >= 500 && GameManager.instance.escudos == 3)
         {
             Escudo1.enabled = true;
             Escudo2.enabled = true;
@@ -81,6 +85,13 @@ public class UIManager : MonoBehaviour
         {
             Escudo3.enabled = false;
         }
+
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            pause.SetActive(true);
+            Time.timeScale = 0;
+        }
     }
+      
 }
 

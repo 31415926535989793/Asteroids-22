@@ -24,7 +24,7 @@ public class AsteroidManager : MonoBehaviour
     void Update()
     {
         //Aumenta en 2 el min i max de asteroides que pueden spawnear en el siguiente nivel y los crea.
-        if(asteroids <= 0)
+        if(asteroids <= 0 && GameManager.instance.points > 0)
         {
             asteroids_min += 2;
             asteroids_max += 2;

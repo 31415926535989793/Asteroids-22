@@ -136,8 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af4bfb72ef4021448e3ca164cd275ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  limitX: 13
-  limitY: 7.5
+  limitX: 14
+  limitY: 8.5
 --- !u!58 &1402995325436712633
 CircleCollider2D:
   m_ObjectHideFlags: 0
